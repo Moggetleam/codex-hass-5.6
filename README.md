@@ -44,6 +44,7 @@ On first launch, Codex prompts you to sign in. The Codex CLI supports ChatGPT si
 - MCP: on
 - Auto-update Codex CLI: on
 - Runtime user: `root`
+- Connection mode: `web_app` (or `remote` for Codex Remote Control)
 
 The App provisions `sol`, `terra`, and `luna` profile files. Launch one with
 `codex --profile sol`, `codex --profile terra`, or `codex --profile luna`.
@@ -51,6 +52,10 @@ They use `xhigh`, `high`, and `medium` reasoning effort respectively.
 
 `full_access`, `never`, and `run_as_root` give Codex autonomous root access
 inside the App container. Use only on a trusted Home Assistant installation.
+
+Set `codex_connection_mode: remote` to start Codex Remote Control on the Home
+Assistant device. It keeps the Supervisor token and Home Assistant MCP local;
+`web_app` preserves the current ingress terminal.
 
 ## Updates
 

@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -u
+
+source /etc/codex.bashrc
+
+if ! command -v codex >/dev/null 2>&1; then
+  echo "[ERROR] Codex CLI is not installed or is not on PATH." >&2
+  exec bash --rcfile /etc/codex.bashrc -i
+fi
+
+if ! codex remote-control --help >/dev/null 2>&1; then
+  echo "[ERROR] This Codex CLI does not support remote control. Enable auto-update or install a newer Codex CLI." >&2
+  exec bash --rcfile /etc/codex.bashrc -i
+fi
+
+echo "[INFO] Starting Codex remote control on this Home Assistant device."
+echo "[INFO] Home Assistant MCP remains local to this device."
+exec codex remote-control start --json

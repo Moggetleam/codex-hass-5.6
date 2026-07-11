@@ -1,11 +1,12 @@
 # Changelog
 
-## [0.2.16] - 2026-07-11
+## [0.2.18] - 2026-07-11
 
 ### Changed
 - Upgraded the managed default model to `gpt-5.6-sol` and enabled bounded startup CLI updates
 - Added managed `sol`, `terra`, and `luna` profile files with `xhigh`, `high`, and `medium` reasoning effort
 - Made autonomous full-access root sessions the default for trusted installations
+- Added selectable Web App and Codex Remote Control connection modes
 
 All notable changes to this project will be documented in this file.
 

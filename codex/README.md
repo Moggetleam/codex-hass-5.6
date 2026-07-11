@@ -80,12 +80,19 @@ When Codex or a prompt mentions `/config`, treat it as `/homeassistant` in this 
 | `auto_update_codex` | `true` | Optionally updates Codex CLI at startup |
 | `codex_update_timeout` | `300` | Maximum seconds for the optional startup update |
 | `run_as_root` | `true` | Runs Codex sessions as root inside the trusted App container |
+| `codex_connection_mode` | `web_app` | Uses the ingress terminal, or starts Codex Remote Control on this device |
 
 ## Models
 
 The App starts with `gpt-5.6-sol` because it is the current managed default. This is only a default, not a lock.
 It also writes selectable `sol`, `terra`, and `luna` profiles with `xhigh`,
 `high`, and `medium` reasoning effort; use `codex --profile <name>`.
+
+## Connection Mode
+
+`web_app` retains the current Home Assistant ingress terminal. `remote` runs
+`codex remote-control start` on the Home Assistant device. It does not expose
+the Supervisor token or move the Home Assistant MCP server to Codex Cloud.
 
 Change models in either place:
 

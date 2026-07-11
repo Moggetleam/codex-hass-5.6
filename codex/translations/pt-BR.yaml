@@ -61,6 +61,11 @@ configuration:
     description: >-
       Executa sessões de terminal como root. Concede acesso completo ao
       contêiner e deve ser usado somente em instalações confiáveis.
+  codex_connection_mode:
+    name: Modo de conexão do Codex
+    description: >-
+      Web App mantém o terminal atual. Remote inicia o controle remoto do
+      Codex neste dispositivo; o MCP do Home Assistant permanece local.
 
 network:
   7681/tcp: Terminal Web (ttyd)
