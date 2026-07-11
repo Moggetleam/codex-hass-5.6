@@ -18,7 +18,7 @@ The App keeps OpenAI credentials out of Home Assistant options. Codex signs in u
 
 ## Install
 
-1. Add `https://github.com/kecksdigital/codex-hass` to the Home Assistant Add-on Store repositories.
+1. Add `https://github.com/moni11811/codex-hass-5.6` to the Home Assistant Add-on Store repositories.
 2. Install **Codex**.
 3. Review the App options.
 4. Start Codex.
@@ -74,15 +74,18 @@ When Codex or a prompt mentions `/config`, treat it as `/homeassistant` in this 
 | `terminal_theme` | `dark` | Chooses the terminal color theme |
 | `working_directory` | `/homeassistant` | Sets the starting folder |
 | `session_persistence` | `false` | Reattaches terminal sessions through tmux when enabled |
-| `default_model` | `gpt-5.4` | Writes the managed startup model for Codex |
-| `codex_permissions` | `workspace` | Selects Codex local sandbox behavior |
-| `codex_approval_policy` | `on-request` | Selects when Codex asks before running actions |
-| `auto_update_codex` | `false` | Optionally updates Codex CLI at startup |
+| `default_model` | `gpt-5.6-sol` | Writes the managed startup model for Codex |
+| `codex_permissions` | `full_access` | Selects Codex local sandbox behavior |
+| `codex_approval_policy` | `never` | Selects when Codex asks before running actions |
+| `auto_update_codex` | `true` | Optionally updates Codex CLI at startup |
 | `codex_update_timeout` | `300` | Maximum seconds for the optional startup update |
+| `run_as_root` | `true` | Runs Codex sessions as root inside the trusted App container |
 
 ## Models
 
-The App starts with `gpt-5.4` because it is a practical default for Home Assistant work. This is only a default, not a lock.
+The App starts with `gpt-5.6-sol` because it is the current managed default. This is only a default, not a lock.
+It also writes selectable `sol`, `terra`, and `luna` profiles with `xhigh`,
+`high`, and `medium` reasoning effort; use `codex --profile <name>`.
 
 Change models in either place:
 
@@ -192,7 +195,7 @@ Home Assistant App updates are separate from Codex CLI updates.
 The App version comes from `codex/config.yaml`. When a new version is pushed to this repository, the GitHub Actions workflow publishes matching images to:
 
 ```text
-ghcr.io/kecksdigital/codex-hass:<version>
+ghcr.io/moni11811/codex-hass:<version>
 ```
 
 Home Assistant then sees the higher version and pulls the matching prebuilt image. Enable **Auto update** on the Codex App page if you want Home Assistant to install those App updates automatically.
@@ -266,6 +269,6 @@ Disable `auto_update_codex` unless you specifically need the newest CLI on every
 
 ## Support
 
-- [Repository](https://github.com/kecksdigital/codex-hass)
-- [Issues](https://github.com/kecksdigital/codex-hass/issues)
+- [Repository](https://github.com/moni11811/codex-hass-5.6)
+- [Issues](https://github.com/moni11811/codex-hass-5.6/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
