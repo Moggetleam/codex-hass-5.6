@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.19] - 2026-07-11
+
+### Fixed
+- Removed the unsupported Remote Control option: Home Assistant containers use the npm Codex install and cannot complete ChatGPT Desktop device pairing
+
 ## [0.2.18] - 2026-07-11
 
 ### Changed

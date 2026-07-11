@@ -17,7 +17,6 @@ class Codex56ConfigurationTests(unittest.TestCase):
         self.config = yaml.safe_load((ROOT / "codex/config.yaml").read_text())
         self.start = (ROOT / "codex/rootfs/usr/local/bin/codex-start").read_text()
         self.session = (ROOT / "codex/rootfs/usr/local/bin/codex-session").read_text()
-        self.remote = (ROOT / "codex/rootfs/usr/local/bin/codex-remote-session").read_text()
         self.dockerfile = (ROOT / "codex/Dockerfile").read_text()
         self.merge = (ROOT / "codex/rootfs/usr/local/bin/codex-merge-config").read_text()
 
@@ -33,16 +32,15 @@ class Codex56ConfigurationTests(unittest.TestCase):
         self.assertIn("CODEX_RUN_AS_ROOT", self.session)
         self.assertIn("profile-*.config.toml", self.session)
 
-    def test_connection_mode_keeps_web_app_default_and_supports_remote_control(self):
-        self.assertEqual(self.config["options"]["codex_connection_mode"], "web_app")
-        self.assertIn("codex_connection_mode: list(web_app|remote)", self._serialized_config())
-        self.assertIn("CODEX_CONNECTION_MODE", self.start)
-        self.assertIn("CODEX_CONNECTION_MODE", self.session)
-        self.assertIn("codex remote-control start", self.remote)
-        self.assertIn("/usr/local/bin/codex-remote-session", self.dockerfile)
+    def test_remote_control_is_not_advertised_for_the_linux_container(self):
+        self.assertNotIn("codex_connection_mode", self._serialized_config())
+        self.assertNotIn("CODEX_CONNECTION_MODE", self.start)
+        self.assertNotIn("CODEX_CONNECTION_MODE", self.session)
+        self.assertNotIn("remote-control", self.dockerfile)
+        self.assertFalse((ROOT / "codex/rootfs/usr/local/bin/codex-remote-session").exists())
 
     def test_fork_manifest_uses_the_fork_registry(self):
-        self.assertEqual(self.config["version"], "0.2.18")
+        self.assertEqual(self.config["version"], "0.2.19")
         self.assertEqual(self.config["image"], "ghcr.io/moni11811/codex-hass")
         self.assertEqual(self.config["url"], "https://github.com/moni11811/codex-hass-5.6")
 

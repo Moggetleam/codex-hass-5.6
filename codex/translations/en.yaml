@@ -58,11 +58,6 @@ configuration:
     description: >-
       Run terminal sessions as root. This grants full container access and is
       intended only for trusted Home Assistant installations.
-  codex_connection_mode:
-    name: Codex Connection Mode
-    description: >-
-      Web App keeps the current Home Assistant terminal. Remote starts Codex
-      remote control on this device; Home Assistant MCP remains local.
 
 network:
   7681/tcp: Web Terminal (ttyd)
