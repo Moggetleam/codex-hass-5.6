@@ -80,6 +80,7 @@ RUN chmod +x \
     /usr/local/bin/hass-mcp-wrapper \
     /usr/local/bin/hass-mcp-root-helper \
     /usr/local/bin/codex-merge-config \
+    /usr/local/bin/codex-remote-session \
     /usr/local/bin/codex-shell \
     /usr/local/bin/codex-session \
     /usr/local/bin/codex-start \

@@ -30,7 +30,7 @@ configuration:
   default_model:
     name: Modelo Predeterminado
     description: >-
-      Modelo persistente de inicio para Codex. La App inicia con gpt-5.4,
+      Modelo persistente de inicio para Codex. La App inicia con gpt-5.6-sol,
       y los usuarios todavía pueden cambiar el modelo durante la sesión con
       /model.
   codex_permissions:
@@ -56,6 +56,16 @@ configuration:
     description: >-
       Segundos máximos para esperar la actualización opcional de Codex CLI al
       iniciar. Solo aplica cuando la actualización automática está habilitada.
+  run_as_root:
+    name: Ejecutar Codex como root
+    description: >-
+      Ejecuta sesiones de terminal como root. Otorga acceso completo al
+      contenedor y debe usarse solo en instalaciones confiables.
+  codex_connection_mode:
+    name: Modo de conexión de Codex
+    description: >-
+      Web App conserva el terminal actual. Remote inicia el control remoto de
+      Codex en este dispositivo; MCP de Home Assistant permanece local.
 
 network:
   7681/tcp: Terminal Web (ttyd)

@@ -64,10 +64,17 @@ default_model="${CODEX_DEFAULT_MODEL:-}"
 enable_mcp="${CODEX_ENABLE_MCP:-true}"
 codex_permissions="${CODEX_PERMISSIONS:-workspace}"
 codex_approval_policy="${CODEX_APPROVAL_POLICY:-on-request}"
+run_as_root="${CODEX_RUN_AS_ROOT:-false}"
+codex_connection_mode="${CODEX_CONNECTION_MODE:-web_app}"
 session_uid=22000
 system_user="codex"
 session_gid=0
 session_path="${user_npm_bin}:${PATH:-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin}"
+
+if [[ "$run_as_root" == "true" ]]; then
+  session_uid=0
+  system_user="root"
+fi
 
 mkdir -p "$user_codex_home" "$user_root" "$user_npm_cache" "$user_npm_bin" || fail_open_shell "$?" "Unable to create Codex state directories."
 
@@ -107,6 +114,7 @@ cleanup_config_lock
 trap - EXIT
 
 chown "$session_uid:$session_gid" "${user_codex_home}/config.toml" 2>/dev/null || true
+chown "$session_uid:$session_gid" "${user_codex_home}"/profile-*.config.toml 2>/dev/null || true
 chown -h "$session_uid:$session_gid" "${user_codex_home}/AGENTS.md" 2>/dev/null || true
 
 if [[ ! -d "$work_dir" ]]; then
@@ -135,6 +143,8 @@ session_env=(
   "CODEX_ENABLE_MCP=$enable_mcp"
   "CODEX_PERMISSIONS=$codex_permissions"
   "CODEX_APPROVAL_POLICY=$codex_approval_policy"
+  "CODEX_RUN_AS_ROOT=$run_as_root"
+  "CODEX_CONNECTION_MODE=$codex_connection_mode"
   "CODEX_USER_ID=$safe_user"
   "CODEX_WORK_DIR=$work_dir"
   "LOGNAME=$system_user"
@@ -147,6 +157,11 @@ session_env=(
   "USER=$system_user"
 )
 
+session_command="/usr/local/bin/codex-shell"
+if [[ "$codex_connection_mode" == "remote" ]]; then
+  session_command="/usr/local/bin/codex-remote-session"
+fi
+
 if [[ "$session_persist" == "true" ]]; then
   tmux_socket="${user_root}/tmux.sock"
   if [[ -e "$tmux_socket" && ! -S "$tmux_socket" ]]; then
@@ -155,17 +170,17 @@ if [[ "$session_persist" == "true" ]]; then
 
   su-exec "$session_uid:$session_gid" env "${session_env[@]}" \
     tmux -S "$tmux_socket" new-session -A -s codex -c "$work_dir" \
-    "exec /usr/local/bin/codex-shell"
+    "exec $session_command"
   tmux_status=$?
 
   if [[ "$tmux_status" -ne 0 ]]; then
     echo "[WARN] Persistent tmux session failed with exit code ${tmux_status}; starting Codex without tmux for this connection." >&2
     exec su-exec "$session_uid:$session_gid" env "${session_env[@]}" \
-      /usr/local/bin/codex-shell
+      "$session_command"
   fi
 
   exit 0
 fi
 
 exec su-exec "$session_uid:$session_gid" env "${session_env[@]}" \
-  /usr/local/bin/codex-shell
+  "$session_command"
