@@ -18,7 +18,7 @@ The App keeps OpenAI credentials out of Home Assistant options. Codex signs in u
 
 ## Install
 
-1. Add `https://github.com/moni11811/codex-hass-5.6` to the Home Assistant Add-on Store repositories.
+1. Add `https://github.com/Moggetleam/codex-hass-5.6` to the Home Assistant Add-on Store repositories.
 2. Install **Codex**.
 3. Review the App options.
 4. Start Codex.
@@ -195,7 +195,7 @@ Home Assistant App updates are separate from Codex CLI updates.
 The App version comes from `codex/config.yaml`. When a new version is pushed to this repository, the GitHub Actions workflow publishes matching images to:
 
 ```text
-ghcr.io/moni11811/codex-hass:<version>
+ghcr.io/moggetleam/codex-hass:<version>
 ```
 
 Home Assistant then sees the higher version and pulls the matching prebuilt image. Enable **Auto update** on the Codex App page if you want Home Assistant to install those App updates automatically.
@@ -269,6 +269,6 @@ Disable `auto_update_codex` unless you specifically need the newest CLI on every
 
 ## Support
 
-- [Repository](https://github.com/moni11811/codex-hass-5.6)
-- [Issues](https://github.com/moni11811/codex-hass-5.6/issues)
+- [Repository](https://github.com/Moggetleam/codex-hass-5.6)
+- [Issues](https://github.com/Moggetleam/codex-hass-5.6/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
