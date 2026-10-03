@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.2.20] - 2026-10-03
+
+### Changed
+- Rebuilt the App image against the current OpenAI Codex CLI release so GPT-6 Astra is supported
+
 ## [0.2.19] - 2026-07-11
 
 ### Fixed

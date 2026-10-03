@@ -40,7 +40,7 @@ class Codex56ConfigurationTests(unittest.TestCase):
         self.assertFalse((ROOT / "codex/rootfs/usr/local/bin/codex-remote-session").exists())
 
     def test_fork_manifest_uses_the_fork_registry(self):
-        self.assertEqual(self.config["version"], "0.2.19")
+        self.assertEqual(self.config["version"], "0.2.20")
         self.assertEqual(self.config["image"], "ghcr.io/moni11811/codex-hass")
         self.assertEqual(self.config["url"], "https://github.com/moni11811/codex-hass-5.6")
 
