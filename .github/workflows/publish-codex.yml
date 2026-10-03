@@ -12,6 +12,8 @@ on:
 env:
   ARCHITECTURES: '["amd64", "aarch64"]'
   IMAGE_NAME: codex-hass
+  REGISTRY_PREFIX: ghcr.io/moggetleam
+  REGISTRY_USERNAME: moggetleam
 
 permissions:
   contents: read
@@ -45,6 +47,7 @@ jobs:
         with:
           architectures: ${{ env.ARCHITECTURES }}
           image-name: ${{ env.IMAGE_NAME }}
+          registry-prefix: ${{ env.REGISTRY_PREFIX }}
 
   build:
     name: Build ${{ matrix.arch }}
@@ -85,6 +88,7 @@ jobs:
           build-args: |
             BUILD_FROM=${{ steps.base.outputs.image }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          container-registry-username: ${{ env.REGISTRY_USERNAME }}
           context: codex
           image: ${{ matrix.image }}
           image-tags: |
@@ -110,7 +114,9 @@ jobs:
         with:
           architectures: ${{ env.ARCHITECTURES }}
           container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          container-registry-username: ${{ env.REGISTRY_USERNAME }}
           image-name: ${{ env.IMAGE_NAME }}
+          registry-prefix: ${{ env.REGISTRY_PREFIX }}
           image-tags: |
             ${{ needs.init.outputs.version }}
             latest
