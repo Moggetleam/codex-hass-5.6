@@ -4,7 +4,7 @@ FROM ${BUILD_FROM}
 LABEL maintainer="Kecks Digital"
 LABEL org.opencontainers.image.title="Codex App for Home Assistant"
 LABEL org.opencontainers.image.description="OpenAI Codex App for the Home Assistant sidebar with terminal access, model controls, and optional MCP integration"
-LABEL org.opencontainers.image.source="https://github.com/moni11811/codex-hass-5.6"
+LABEL org.opencontainers.image.source="https://github.com/Moggetleam/codex-hass-5.6"
 LABEL org.opencontainers.image.licenses="MIT"
 
 ENV \

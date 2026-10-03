@@ -8,13 +8,13 @@ This repository publishes one Home Assistant App: `Codex`. It gives you a browse
 
 ## Install
 
-[![Add Repository](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fmoni11811%2Fcodex-hass-5.6)
+[![Add Repository](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2FMoggetleam%2Fcodex-hass-5.6)
 
 Manual install:
 
 1. Open **Settings** -> **Add-ons** -> **Add-on Store** in Home Assistant.
 2. Open **Repositories** from the three-dot menu.
-3. Add `https://github.com/moni11811/codex-hass-5.6`.
+3. Add `https://github.com/Moggetleam/codex-hass-5.6`.
 4. Install **Codex**.
 5. Start the App and open it from the sidebar.
 
@@ -60,7 +60,7 @@ Home Assistant updates the Codex App when this repository publishes a higher ver
 The App uses prebuilt images from GitHub Container Registry:
 
 ```text
-ghcr.io/moni11811/codex-hass:<version>
+ghcr.io/moggetleam/codex-hass:<version>
 ```
 
 Enable **Auto update** on the Codex App page in Home Assistant if you want Home Assistant to install future App versions automatically.
@@ -78,7 +78,7 @@ Useful upstream docs:
 
 ## Support
 
-- [Issues](https://github.com/moni11811/codex-hass-5.6/issues)
+- [Issues](https://github.com/Moggetleam/codex-hass-5.6/issues)
 - [Home Assistant Community](https://community.home-assistant.io/)
 
 ## License

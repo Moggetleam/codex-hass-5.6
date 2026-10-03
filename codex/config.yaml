@@ -2,8 +2,8 @@ name: Codex
 description: OpenAI Codex App for Home Assistant with terminal access, model controls, and optional Home Assistant MCP integration
 version: "0.2.20"
 slug: codex
-url: https://github.com/moni11811/codex-hass-5.6
-image: ghcr.io/moni11811/codex-hass
+url: https://github.com/Moggetleam/codex-hass-5.6
+image: ghcr.io/moggetleam/codex-hass
 arch:
   - amd64
   - aarch64
